@@ -12,6 +12,7 @@
 
  */
 
+import java.util.Arrays;
 import java.util.Stack;
 
 public class Solution {
@@ -26,25 +27,37 @@ public class Solution {
     private static char closedC = ')';
 
     public static void main(String[] args) {
-        process(args[0]);
+        System.out.println(process(args[0]));
+        System.out.println(Arrays.toString(args));
     }
 
-    public static void process(String input){
+    public static String process(String input){
+        if (input.length() == 1){
+            return "1";
+        }
         Stack<Character> stack = new Stack<>();
+        Stack<Integer> indexes = new Stack<>();
         char[] chars = input.toCharArray();
         for (int i = 0; i < chars.length; i++) {
             if (isOpened(chars[i])){
                 stack.push(chars[i]);
+                indexes.push(i + 1);
             }
             else if (isClosed(chars[i])){
+                if (stack.isEmpty()){
+                    return String.valueOf(i + 1);
+                }
                 Character pop = stack.pop();
+                indexes.pop();
                 if (!isClosable(pop, chars[i])){
-                    System.out.println( i + 1);
-                    return;
+                    return String.valueOf(i + 1);
                 }
             }
         }
-        System.out.println(success);;
+        if (!indexes.isEmpty()){
+            return String.valueOf(indexes.pop());
+        }
+        return success;
     }
 
     private static boolean isClosable(Character pop, char c) {
