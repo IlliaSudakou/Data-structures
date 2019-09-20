@@ -15,26 +15,39 @@ Output - 3
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Solution {
 
     public static int getDepth(String secondLine) {
         String[] strings = secondLine.split(" ");
+        Map<Integer, List<String>> allChildren = getAllChildren(strings);
         String root = getRoot(strings);
-        return getMaxDepth(strings, root);
+        return getMaxDepth(root, allChildren);
     }
 
-    private static int getMaxDepth(String[] strings, String root) {
-        int depth = 1;
+    private static Map<Integer, List<String>> getAllChildren(String[] strings) {
+        Map<Integer, List<String>> allChildren = new HashMap<>();
 
-        String[] children = getChildren(root, strings);
-        if (children.length > 0){
+        for (int i = 0; i < strings.length; i++) {
+            String parent = strings[i];
+            String child = String.valueOf(i);
+            List<String> stringList = allChildren.computeIfAbsent(Integer.parseInt(parent), k -> new ArrayList<>());
+            stringList.add(child);
+        }
+        return allChildren;
+    }
+
+    private static int getMaxDepth(String root, Map<Integer, List<String>> allChildren) {
+        int depth = 1;
+        List<String> children = allChildren.get(Integer.parseInt(root));
+        if (children != null){
             for (String child : children) {
-                depth = max(depth, 1+ getMaxDepth(strings, child));
+                depth = max(depth, 1+ getMaxDepth(child, allChildren));
             }
         }
-
         return depth;
     }
 
