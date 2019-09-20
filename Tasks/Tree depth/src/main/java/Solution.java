@@ -30,7 +30,6 @@ public class Solution {
 
     private static Map<Integer, List<String>> getAllChildren(String[] strings) {
         Map<Integer, List<String>> allChildren = new HashMap<>();
-
         for (int i = 0; i < strings.length; i++) {
             String parent = strings[i];
             String child = String.valueOf(i);
@@ -45,24 +44,10 @@ public class Solution {
         List<String> children = allChildren.get(Integer.parseInt(root));
         if (children != null){
             for (String child : children) {
-                depth = max(depth, 1+ getMaxDepth(child, allChildren));
+                depth = Math.max(depth, 1 + getMaxDepth(child, allChildren));
             }
         }
         return depth;
-    }
-
-    private static int max(int depth, int i) {
-        return Math.max(depth, i);
-    }
-
-    private static String[] getChildren(String root, String[] strings) {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < strings.length; i++) {
-            if (root.equals(strings[i])) {
-                list.add(String.valueOf(i));
-            }
-        }
-        return list.toArray(new String[0]);
     }
 
     private static String getRoot(String[] strings) {
