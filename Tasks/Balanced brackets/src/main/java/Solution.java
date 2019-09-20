@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.Stack;
 
 public class Solution {
-    private static String success = "Success";
 
     private static char openedA = '[';
     private static char openedB = '{';
@@ -57,7 +56,7 @@ public class Solution {
         if (!indexes.isEmpty()){
             return String.valueOf(indexes.pop());
         }
-        return success;
+        return "Success";
     }
 
     private static boolean isClosable(Character pop, char c) {
@@ -67,23 +66,14 @@ public class Solution {
         if (pop == openedB && c == closedB){
             return true;
         }
-        if (pop == openedC && c == closedC){
-            return true;
-        }
-        return false;
+        return pop == openedC && c == closedC;
     }
 
     private static boolean isClosed(char c) {
-        if (c == closedA || c == closedB || c == closedC){
-            return true;
-        }
-        return false;
+        return c == closedA || c == closedB || c == closedC;
     }
 
     private static boolean isOpened(char c) {
-        if (c == openedA || c == openedB || c == openedC){
-            return true;
-        }
-        return false;
+        return c == openedA || c == openedB || c == openedC;
     }
 }
