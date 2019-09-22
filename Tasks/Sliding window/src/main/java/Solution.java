@@ -18,7 +18,7 @@ public class Solution {
      * @param m window length
      * @return minimums
      */
-    public static int[] getWindowsQuequeMin(int[] n, int m){
+    public static int[] getWindowsQueueMin(int[] n, int m){
         List<Integer> result = new ArrayList<>();
         if (m == 1 || n.length == 1){
             return n;
@@ -59,7 +59,7 @@ public class Solution {
     }
 
 
-    public static int[] getWindowsQuequeMaximum(int[] n, int m){
+    public static int[] getWindowsQueueMaximum(int[] n, int m){
         List<Integer> result = new ArrayList<>();
         if (m == 1 || n.length == 1){
             return n;

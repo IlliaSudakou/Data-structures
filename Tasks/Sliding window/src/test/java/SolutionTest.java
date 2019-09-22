@@ -13,14 +13,14 @@ public class SolutionTest {
     @MethodSource("testParameters")
     public void testSecondSolution(int[] n, int window, int[] expectedValue) {
 
-        assertArrayEquals(expectedValue, Solution.getWindowsQuequeMin(n, window));
+        assertArrayEquals(expectedValue, Solution.getWindowsQueueMin(n, window));
     }
 
     @ParameterizedTest(name="Run {index}: n={0}, window={1}, expectedValue={2}")
     @MethodSource("testParametersMax")
     public void testSecondSolutionMax(int[] n, int window, int[] expectedValue) {
 
-        assertArrayEquals(expectedValue, Solution.getWindowsQuequeMaximum(n, window));
+        assertArrayEquals(expectedValue, Solution.getWindowsQueueMaximum(n, window));
     }
 
     static Stream<Arguments> testParameters() throws Throwable {
